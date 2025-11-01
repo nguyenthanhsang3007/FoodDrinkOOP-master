@@ -112,72 +112,39 @@ public class ListBill {
     }
 
     public void printAllBills() {
-    System.out.println(
-            "+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------ +");
-    System.out.printf("| %-10s | %-20s | %-20s | %-20s | %7s | %15s | %15s | %-12s | %-18s |\n",
-            "Id HĐ", "Khách hàng", "Thu ngân", "Tên sản phẩm", "SL", "Đơn giá", "Tổng giá",
-            "Giảm giá(VIP)", "Ngày tạo");
-    System.out.println(
-            "+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------ +");
+        System.out.println(
+                "+ ------------------------------------------------------------------------------------------------------------------------------------------------ +");
+        System.out.printf("| %-10s | %-20s | %-20s | %-19s | %8s | %15s | %15s | %-18s  |\n",
+                "Id HĐ", "Khách hàng", "Thu ngân", "Tên sản phẩm", "SL", "Đơn giá", "Tổng giá",
+                "Ngày tạo");
+        System.out.println(
+                "+ ------------------------------------------------------------------------------------------------------------------------------------------------ +");
 
-    for (int i = 0; i < numBills; i++) {
-        Bill bill = billList[i];
-        String isVIP = getDiscountStatus(bill.getIdCustomer()); 
-        
-        if (bill.getBill().contains("@")) {
-            String[] infors = bill.getBill().split("@");
-            String productInfo = ToString1(inforProduct(infors[0]));
-            System.out.printf("| %-10s | %-20s | %-20s | %-40s | %15.2f | %-12s | %-18s |\n",
-                    bill.getIdBill(), nameCustomer(bill.getIdCustomer()), nameCashier(bill.getIdCashier()),
-                    productInfo, bill.getTotalPrice(), isVIP, bill.getDateCreate());
-            for (int j = 1; j < infors.length; j++) {
-                System.out.printf("| %-10s   %-20s   %-20s | %-40s | %15s  %-12s  |%-18s   |\n",
-                        "", "", "",
-                        ToString1(inforProduct(infors[j])), "", "", "");
-            }
-            System.out.println(
-                    "+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------ +");
-        } else {
-            String productInfo = ToString1(inforProduct(bill.getBill()));
-            System.out.printf("| %-10s | %-20s | %-20s | %-40s | %15.2f | %-12s | %-18s |\n",
-                    bill.getIdBill(), nameCustomer(bill.getIdCustomer()), nameCashier(bill.getIdCashier()),
-                    productInfo, bill.getTotalPrice(), isVIP, bill.getDateCreate());
-            System.out.println(
-                    "+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------ +");
+        for (int i = 0; i < numBills; i++) {
+            Bill bill = billList[i];
+
+            if (bill.getBill().contains("@")) {
+                String[] infors = bill.getBill().split("@");
+                System.out.printf("| %-10s | %-20s | %-20s | %-40s | %15.2f | %-18s |\n",
+                        bill.getIdBill(), nameCustomer(bill.getIdCustomer()), nameCashier(bill.getIdCashier()),
+                        ToString1(inforProduct(infors[0])), bill.getTotalPrice(), bill.getDateCreate());
+                for (int j = 1; j < infors.length; j++) {
+                    System.out.printf("| %-10s   %-20s   %-20s | %-40s | %15.2s  %-18s   |\n",
+                            "", "", "",
+                            ToString1(inforProduct(infors[j])), "", "");
+                }
+                System.out.println(
+                        "+ ------------------------------------------------------------------------------------------------------------------------------------------------ +");
+            } else {
+                System.out.printf("| %-10s | %-20s | %-20s | %-40s | %15.2f | %-18s |\n",
+                        bill.getIdBill(), nameCustomer(bill.getIdCustomer()), nameCashier(bill.getIdCashier()),
+                        ToString1(inforProduct(bill.getBill())), bill.getTotalPrice(), bill.getDateCreate());
+                System.out.println(
+                        "+ ------------------------------------------------------------------------------------------------------------------------------------------------ +");
             }
         }
     }
-    public String getDiscountStatus(String customerId) {
-    if (customerId == null || customerId.equalsIgnoreCase("null") || customerId.trim().isEmpty()) {
-        return "0%";
-    }
 
-    try {
-        File file = new File("data\\customer.txt");
-        Scanner read = new Scanner(file);
-
-        while (read.hasNextLine()) {
-            String[] line = read.nextLine().split(",");
-
-            // Kiểm tra ID khớp (không phân biệt hoa thường + bỏ khoảng trắng)
-            if (line[0].trim().equalsIgnoreCase(customerId.trim())) {
-
-                // ⚠ Điều chỉnh vị trí điểm tại đây nếu cần
-                float score = Float.parseFloat(line[2].trim());
-
-                read.close();
-                return (score >= 300000f) ? "10%" : "0%";
-            }
-        }
-        read.close();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-
-    return "0%";
-}
-
-    
     public float calculateTotalIncome() {
         float revenue = 0;
         for (int i = 0; i < numBills; i++) {
@@ -217,7 +184,6 @@ public class ListBill {
         }
         return "";
     }
-    
 
     public String inforProduct(String infors) {
 
