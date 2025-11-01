@@ -1,6 +1,6 @@
 FD1, Bread, 50000.000000, Bánh mì tươi ngon với nhiều loại nhân khác nhau, 0, Thức ăn
 FD2, Hamburger, 60000.000000, Hamburger ngon với bánh và rau sống, 9, Thức ăn
-FD3, Fried Chicken, 70000.000000, Gà chiên giòn ngon với gia vị đặc biệt, 93, Thức ăn
+FD3, Fried Chicken, 70000.000000, Gà chiên giòn ngon với gia vị đặc biệt, 90, Thức ăn
 FD4, French fries, 30000.000000, Khoai tây chiên giòn, 1, Thức ăn
 FD5, Pizza, 80000.000000, Pizza với nhiều loại sốt và nhân khác nhau, 9, Thức ăn
 DK1, Cola, 20000.000000, Nước ngọt cola sảng khoái, 96, Đồ uống
