@@ -1,0 +1,10 @@
+FD1, Bread, 40000.0, Nhà cung cấp Bánh Tươi SG, 0909123456, 25 Nguyễn Văn Cừ, TP.HCM
+FD2, Hamburger, 48000.0, Cơ Sở Bánh Burger Việt, 0911222333, 14 Hai Bà Trưng, Hà Nội
+FD3, Fried Chicken, 55000.0, Gà Rán ABC Food, 0922333444, 78 Lý Thường Kiệt, TP.HCM
+FD4, French fries, 20000.0, Khoai Tây FreshFarm, 0933555666, 90 Nguyễn Trãi, Đà Nẵng
+FD5, Pizza, 60000.0, Pizza Supply Co., 0944666777, 60 Nguyễn Huệ, TP.HCM
+DK1, Cola, 15000.0, Coca-Cola Việt Nam, 0909777888, 12 Pasteur, TP.HCM
+DK2, Lemonade, 18000.0, Nước Giải Khát Lemon Fresh, 0912888999, 45 Phan Chu Trinh, Hà Nội
+DK3, Iced tea, 12000.0, Trà Việt Xanh, 0933111222, 88 Trần Hưng Đạo, Huế
+DK4, Fresh orange juice, 17000.0, Công ty Nước Ép SunFruit, 0977666555, 101 Lê Lợi, Cần Thơ
+DK5, Mineral water, 10000.0, Công ty Nước Khoáng Thiên Nhiên, 0988111222, 25 Nguyễn Du, Đà Lạt

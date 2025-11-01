@@ -1,0 +1,9 @@
+
+2025-10-24,07:36:01.290350700
+FD1, Bread, 40000.0, Nhà cung cấp Bánh Tươi SG,10, 25 Nguyễn Văn Cừ, TP.HCM,
+DK1, Cola, 15000.0, Coca-Cola Việt Nam,10, 12 Pasteur, TP.HCM,
+2025-10-29,14:00:52.432875500
+FD1, Bread, 40000.0, Nhà cung cấp Bánh Tươi SG,10, 25 Nguyễn Văn Cừ, TP.HCM,
+FD2, Hamburger, 48000.0, Cơ Sở Bánh Burger Việt,20, 14 Hai Bà Trưng, Hà Nội,
+2025-10-31,07:43:13.267387200
+FD5, Pizza, 60000.0, Pizza Supply Co.,20, 60 Nguyễn Huệ, TP.HCM,

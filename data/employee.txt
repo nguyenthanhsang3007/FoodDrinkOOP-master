@@ -1,0 +1,18 @@
+CAS1, Nguyễn Văn F, Cashier, 150
+WAI3, Nguyễn Văn A, Waiter, 100
+CAS2, Lê Văn B, Cashier, 120
+CAS3, Trần Minh F, Cashier, 100
+WAI4, Nguyễn Minh T, Waiter, 200
+WAI5, Nguyễn Minh P, Waiter, 100
+WAI6, Nguyễn Lê Anh T, Waiter, 90
+CAS5, Trần Tiến B, Cashier, 300
+CAS6, Lê Tiến Đ, Cashier, 200
+WAI7, Lê Tiên D, Waiter, 120
+WAI8, Trân Xuân T, Waiter, 100
+WAI9, Trần Hữu O, Waiter, 200
+WAI10, Lê Minh T, Waiter, 120
+CAS7, Trần Tiến Toàn, Cashier, 90
+WAI12, Tang Gia Bao, Waiter, 100
+CAS8, Nguyễn Thành Sáng, Cashier, 10
+WAI14, Toàn, Waiter, 25
+WAI15, Thanh Sang, Waiter, 30
