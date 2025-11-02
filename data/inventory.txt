@@ -3,8 +3,8 @@ FD2, Hamburger, 60000.000000, Hamburger ngon với bánh và rau sống, 9, Th�
 FD3, Fried Chicken, 70000.000000, Gà chiên giòn ngon với gia vị đặc biệt, 90, Thức ăn
 FD4, French fries, 30000.000000, Khoai tây chiên giòn, 1, Thức ăn
 FD5, Pizza, 80000.000000, Pizza với nhiều loại sốt và nhân khác nhau, 9, Thức ăn
-DK1, Cola, 20000.000000, Nước ngọt cola sảng khoái, 96, Đồ uống
-DK2, Lemonade, 25000.000000, Đồ uống có hương chanh, 98, Đồ uống
-DK3, Iced tea, 18000.000000, Trà lạnh có đá, 99, Đồ uống
-DK4, Fresh orange juice, 22000.000000, Nước cam tươi ép mới, 100, Đồ uống
-DK5, Mineral water, 15000.000000, Nước khoáng lọc, 99, Đồ uống
+DK1, Cola, 20000.000000, Nước ngọt cola sảng khoái, 74, Đồ uống
+DK2, Lemonade, 25000.000000, Đồ uống có hương chanh, 88, Đồ uống
+DK3, Iced tea, 18000.000000, Trà lạnh có đá, 89, Đồ uống
+DK4, Fresh juice, 22000.000000, Nước cam tươi ép mới, 60, Đồ uống
+DK5, Mineral water, 15000.000000, Nước khoáng lọc, 89, Đồ uống

@@ -21,6 +21,7 @@ public class Bill {
     private String bill;
     private String dataLastOrder;
     private String nameCustomer;
+    private float totalPriceBeforeDiscount;
     public Bill(String idBill, String idCustomer, String idCashier, String bill, float totalPrice) {
         this.idBill = idBill;
         this.idCustomer = idCustomer;
@@ -61,7 +62,9 @@ public class Bill {
     public String getIdCustomer() {
         return idCustomer;
     }
-
+    public void setTotalPriceBeforeDiscount(float totalPriceBeforeDiscount) {
+        this.totalPriceBeforeDiscount = totalPriceBeforeDiscount;
+    }
     public String getIdCashier() {
         this.idCashier = getRandomCashierId();
         return idCashier;
@@ -86,7 +89,9 @@ public class Bill {
     public String getDataLastOrder() {
         return dataLastOrder;
     }
-
+    public float getTotalPriceBeforeDiscount() {
+        return totalPriceBeforeDiscount;
+    }
     public void setDataLastOrder() {
         try (FileReader file = new FileReader("data\\order.txt");
                 Scanner sc = new Scanner(file)) {
@@ -114,27 +119,37 @@ public class Bill {
         return originalId.replaceFirst("ORD", "BIL");
     }
 
+    // Trong class Bill.java
     public String getNameCustomer() {
         String[] parts = this.dataLastOrder.split("#");
-        customerList.readFromFile(); // Thêm dòng này để có dữ liệu truy vấn
+        customerList.readFromFile();
+    
+    // Gán giá TRƯỚC GIẢM (totalPrice hiện tại là giá gốc từ convertDataBill())
+        this.totalPriceBeforeDiscount = this.totalPrice; // SỬ DỤNG THUỘC TÍNH MỚI
+    
         for (int i = 0; i < customerList.getCustomerList().length; i++) {
             if (customerList.getCustomerList()[i].getIdCustomer().equals(parts[1])) {
                 nameCustomer = customerList.getCustomerList()[i].getNameCustomer();
                 customerList.setCheck(false);
                 Customer updateScore = customerList.getCustomerList()[i];
+            
                 if (updateScore.getScore() > 300000f) {
-                    // Khach vip
+                // Khach vip: tính giá sau giảm 10%
                     isVIP = true;
-                    updateScore.setScore(updateScore.getScore() + getTotalPrice() - getTotalPrice() * 0.1f);
-                    newTotalPrice = getTotalPrice() - getTotalPrice() * 0.1f;
-                } else { // Khach dom?
+                // newTotalPrice = Giá gốc - 10%
+                    newTotalPrice = totalPriceBeforeDiscount - totalPriceBeforeDiscount * 0.1f; 
+                } else { // Khach thường
                     isVIP = false;
-                    updateScore.setScore(updateScore.getScore() + getTotalPrice());
-                    newTotalPrice = getTotalPrice();
+                    newTotalPrice = totalPriceBeforeDiscount;
                 }
+            
+                updateScore.setScore(updateScore.getScore() + newTotalPrice);
                 customerList.getCustomerList()[i] = updateScore;
                 customerList.writeToFile();
                 customerList.setCheck(true);
+            
+            // Cập nhật totalPrice của Bill là giá SAU giảm giá
+                setTotalPrice(newTotalPrice); 
             }
         }
         return nameCustomer;
@@ -209,31 +224,40 @@ public class Bill {
 
         return result.toString();
     }
-
     public String toString() {
         String inforBill = convertDataBill();
         String x = getNameCustomer();
-        setTotalPrice(newTotalPrice);
-        if (isVIP)
-            return String.format(" \n%s\nTên khách hàng: %s(VIP) \nTổng tiền: %.2f \nNgày: %s",
-                    inforBill, x, newTotalPrice, dateFormat.format(dateCreate));
+        setTotalPrice(this.newTotalPrice); 
+
+        if (isVIP) {
+            float discountAmount = this.totalPriceBeforeDiscount - this.newTotalPrice; 
+            //Khách VIP
+            return String.format(" \n%s\nTên khách hàng: %s(VIP) \nĐược giảm giá: 10%%\nSố tiền được giảm: %.2f \nTổng tiền (Sau giảm giá): %.2f \nNgày: %s",
+                    inforBill,x,discountAmount,this.newTotalPrice,dateFormat.format(dateCreate)        
+            );
+        }       
+        // Khách hàng thường 
         return String.format(" \n%s\nTên khách hàng: %s \nTổng tiền: %.2f \nNgày: %s",
-                inforBill, x, newTotalPrice, dateFormat.format(dateCreate));
+                inforBill,x,this.newTotalPrice,dateFormat.format(dateCreate)            
+        );
     }
 
     public void writeToFile() {
+        convertDataBill();
+        getNameCustomer(); 
+    
         this.idCashier = getRandomCashierId();
         try {
             FileWriter f = new FileWriter("data\\list_bill.txt", true);
-            String code = String.format("%s#%s#%s#%s#%f#%s", this.idBill, this.idCustomer, this.idCashier,
-                    this.getBill(), this.getTotalPrice(), this.getDateCreate());
+            String code = String.format("%s#%s#%s#%s#%f#%f#%s", this.idBill, this.idCustomer, this.idCashier,
+                this.getBill(), this.getTotalPriceBeforeDiscount(), this.getTotalPrice(), this.getDateCreate());
             f.write(code);
             f.write("\n");
             f.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }   
     }
 
     public String getRandomCashierId() {
